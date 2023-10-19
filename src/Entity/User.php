@@ -4,11 +4,13 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -33,6 +35,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?string $lastname = null;
+
+    #[ORM\Column(type: 'boolean')]
+    private $isVerified = false;
+
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?UserList $userList = null;
 
     public function getId(): ?int
     {
@@ -146,4 +154,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getUserList(): ?UserList
+    {
+        return $this->userList;
+    }
+
+    public function setUserList(?UserList $userList): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($userList === null && $this->userList !== null) {
+            $this->userList->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($userList !== null && $userList->getUser() !== $this) {
+            $userList->setUser($this);
+        }
+
+        $this->userList = $userList;
+
+        return $this;
+    }
+
+   
 }

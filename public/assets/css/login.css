@@ -1,0 +1,18 @@
+/* .login-page {
+    background-image: url("{{ asset('img/bg.avif') }}") !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formStyle {
+    background-color: black;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+} */

@@ -11,9 +11,14 @@ class AppController extends AbstractController
     #[Route('/homepage', name: 'app_homepage')]
     public function index(): Response
     {
-        return $this->render('app/index.html.twig', [
-            'user' => $this->getUser(),
-        ]);
+        if($this->getUser()->isVerified()){
+            return $this->render('app/index.html.twig', [
+                'user' => $this->getUser(),
+            ]);
+        }else{
+            return $this->render('app/check_email_verified.html.twig');
+        }
+       
     }
 
    
