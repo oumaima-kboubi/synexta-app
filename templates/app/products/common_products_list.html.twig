@@ -63,11 +63,9 @@
         <button type="submit" class="btn btn-primary align-self-center">Filter</button>
     </div>
 </div>
-     <form action="{{ path('app_user_list', { 'categoryId': categoryy.getId() }) }}" method="post">
-            <button type="submit">Check your own list</button>
+
+            <button><a href="{{ path('app_user_list') }}" class="btn btn-info text-center">Check your own list</a></button>
         </form>
-          
-      
         <br>
           {% for categoryy in categories %}
                      {% if actualFilter == categoryy.getName() %}
