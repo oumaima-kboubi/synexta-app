@@ -1,3 +1,7 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+add_category_products_to_personal_list:
+    path: '/add_category_products_to_personal_list/{categoryId}'
+    controller: 'App\Controller\ProductController::addCategoryProductsToPersonalList'

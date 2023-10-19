@@ -57,10 +57,13 @@
                 {{ form_row(registrationForm.agreeTerms, {'label': 'I agree to the terms', 'attr': {'class': 'form-check-input'}}) }}
             </div>
             <div class="mb-3">
-                <button type="submit" class="btn btn-primary btn-block">Register</button>
+                <button type="submit" class="btn btn-primary btn-block" style="margin-left: 40%; margin-down:10px">Register</button>
             </div>
             {{ form_end(registrationForm) }}
+          
+     <a href="{{ path('app_login') }}"style="margin-left: 25%">Already have an account?</a>
         </div>
     </div>
+    
 </body>
 {% endblock %}

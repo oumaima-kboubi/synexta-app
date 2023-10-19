@@ -21,6 +21,15 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
+    public function findByCategory($categoryId)
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.category', 'c')
+            ->where('c.id = :categoryId')
+            ->setParameter('categoryId', $categoryId)
+            ->getQuery()
+            ->getResult();
+    }
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */

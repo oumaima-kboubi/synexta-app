@@ -1,0 +1,28 @@
+{# templates/personal_list/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Personal List{% endblock %}
+
+{% block body %}
+    <h1>Your Personal List</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Action</th> {# Add an action column #}
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in personalList.products %}
+                <tr>
+                    <td>{{ product.getName() }}</td>
+                    <td>
+                        <a href="{{ path('remove_from_personal_list', {'productId': product.getId()}) }}" class="btn btn-danger">Remove</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+{% endblock %}
