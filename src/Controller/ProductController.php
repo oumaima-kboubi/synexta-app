@@ -124,7 +124,7 @@ public function addCategoryProductsToPersonalList(Request $request, int $categor
         $entityManager->flush();
     }
     $appliedFilter = $categoryRepository->findBy(['id'=> $categoryId]);
-    $this->addFlash('success', 'The products in the category '. $appliedFilter[0]->getName().' is added to you personal list.');
+    $this->addFlash('success', 'The products in the category '. $appliedFilter[0]->getName().' are added to you personal list.');
 
     // Redirect back to the product list page with the updated personal list
     return $this->redirectToRoute('product_show_all');
