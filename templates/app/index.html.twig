@@ -31,6 +31,11 @@
             top: 10px;
             right: 10px;
         }
+              .edit-button {
+            position: absolute;
+            top: 10px;
+            right: 100px;
+        }
     </style>
 {% endblock %}
 
@@ -45,6 +50,7 @@
         <div class="mb-3">
             <p class="text-center">You are logged in as: {{ app.user.email }}</p>
             <p><a href="{{ path('app_logout') }}" class="btn btn-danger logout-button">Logout</a></p>
+            <p><a href="{{ path('app_edit_user') }}" class="btn btn-info edit-button">Edit User</a></p>
         </div>
         <br>
         <h1 class=" text-center">Hello, <strong>{{ app.user.firstname }} {{ app.user.lastname }}</strong>! ✅</h1>

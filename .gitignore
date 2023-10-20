@@ -90,3 +90,7 @@
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/symfony,visualstudiocode
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###

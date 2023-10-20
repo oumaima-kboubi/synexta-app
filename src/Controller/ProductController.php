@@ -88,23 +88,24 @@ class ProductController extends AbstractController
             
             $personalList->addProduct($product[0]);
           
-            // Persist and flush the changes (if using Doctrine ORM)
+            // Persist and flush the changes
             $entityManager->persist($personalList);
             $entityManager->flush();
         }
-    
+        
+        $this->addFlash('success', 'Your product '. $product[0]->getName().' is added to you personal list.');
         // Redirect to the product list page
         return $this->redirectToRoute('product_show_all');
     }
 
 
 #[Route('/add_category_products_to_personal_list/{categoryId}', name: 'add_category_products_to_personal_list')]
-public function addCategoryProductsToPersonalList(Request $request, int $categoryId, ProductRepository $productRepository, EntityManagerInterface $entityManager): RedirectResponse
+public function addCategoryProductsToPersonalList(Request $request, int $categoryId, ProductRepository $productRepository, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository): RedirectResponse
 {
-    // Get the user (you should have user authentication in place)
+    // Get the user 
     $user = $this->getUser();
 
-    // Fetch the user's personal list (this depends on your application's data structure)
+    // Fetch the user's personal list 
     $personalList = $user->getUserList();
     if (!$personalList) {
         $personalList = new UserList();
@@ -118,13 +119,15 @@ public function addCategoryProductsToPersonalList(Request $request, int $categor
             $personalList->addProduct($product);
         }
 
-        // Persist and flush the changes (if using Doctrine ORM)
+        // Persist and flush the changes
         $entityManager->persist($personalList);
         $entityManager->flush();
     }
+    $appliedFilter = $categoryRepository->findBy(['id'=> $categoryId]);
+    $this->addFlash('success', 'The products in the category '. $appliedFilter[0]->getName().' is added to you personal list.');
 
     // Redirect back to the product list page with the updated personal list
-    return $this->redirectToRoute('app_user_list');
+    return $this->redirectToRoute('product_show_all');
 }
 
 }

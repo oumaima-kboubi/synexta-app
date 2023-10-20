@@ -24,13 +24,28 @@
             max-width: 1100px;
         }
         .scrollable-table {
-            max-height: 400px; /* Adjust the height as needed */
+            max-height: 400px; 
             overflow-y: auto;
         }
          .logout-button {
             position: absolute;
             top: 10px;
             right: 10px;
+        }
+        .list-button {
+            margin-left:40%;
+            margin-top:20px;
+            margin-bottom:10px
+        }
+         .category-button {
+            margin-left:75%;
+            margin-top:20px;
+            margin-bottom:10px
+        }
+              .edit-button {
+            position: absolute;
+            top: 10px;
+            right: 100px;
         }
     </style>
 {% endblock %}
@@ -45,6 +60,7 @@
  <div class="mb-3">
           
             <p><a href="{{ path('app_logout') }}" class="btn btn-danger logout-button">Logout</a></p>
+               <p><a href="{{ path('app_edit_user') }}" class="btn btn-info edit-button">Edit User</a></p>
         </div>
         {# Category Filter #}
         <form action="{{ path('product_show_all') }}" method="post">
@@ -59,23 +75,25 @@
         </select>
     </div>
     <div class="col-md-2"> 
-    
-        <button type="submit" class="btn btn-primary align-self-center">Filter</button>
+        <button type="submit" class="btn btn-info align-self-center">Filter</button>
     </div>
 </div>
 
-            <button><a href="{{ path('app_user_list') }}" class="btn btn-info text-center">Check your own list</a></button>
+            <p><a href="{{ path('app_user_list') }}" class="btn btn-info list-button">Check your own list</a></p>
         </form>
-        <br>
+      
           {% for categoryy in categories %}
                      {% if actualFilter == categoryy.getName() %}
                      <form action="{{ path('add_category_products_to_personal_list', { 'categoryId': categoryy.getId() }) }}" method="post">
-            <button type="submit">Add all products in {{ actualFilter }}</button>
-        </form>
+                        <button type="submit" class=" btn btn-success category-button">Add all products in {{ actualFilter }}</button>
+                    </form>
                      {% endif %}
             {% endfor %}
 
         {# Product Table #}
+        {% for flashSuccess in app.flashes('success') %}
+            <div class="alert alert-success" role="alert">{{ flashSuccess }}</div>
+        {% endfor %}
         <div class="scrollable-table">
         <table class="table table-bordered mt-3">
             <thead class="table-dark">

@@ -56,7 +56,7 @@ class UserListController extends AbstractController
 
         // Persist and flush the changes (if using Doctrine ORM)
         $entityManager->flush();
-
+        $this->addFlash('remove_success', 'Your Product '. $product->getName().' has been removed from you personal list.');
         // Redirect back to the personal list page
         return $this->redirectToRoute('app_user_list');
     }
