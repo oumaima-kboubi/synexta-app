@@ -8,13 +8,12 @@ class ProductControllerTest extends PantherTestCase
     public function testAddToPersonalList()
     {
         $client = self::createPantherClient();
-        $crawler = $client->request('GET', '/add_to_personal_list/34'); // Replace 1 with a valid product ID
-
+        $crawler = $client->request('GET', '/add_to_personal_list/34'); 
         // Check for successful redirection
         $this->assertResponseIsSuccessful();
         $this->assertStringContainsString('/product/all', $client->getResponse()->getTargetUrl());
 
-        // Simulate authentication (you can customize this part to fit your authentication method)
+        // Simulate authentication 
         $client->loginUserByUsername('ouma@ouma.com', 'oumaima123456789'); 
 
         // Execute the action after authenticating
