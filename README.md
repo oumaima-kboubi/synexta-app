@@ -73,8 +73,9 @@ In order to run this project and extend its functionalities you need to follow a
 <p align="right">(<a href="#here"> Go to the 🔝</a>)</p>
 
 ## The app live demo  ♾️
-* [THE LIVE DEMO for you to live the real experience🎵](https://www.youtube.com/watch?v=_X36k_RJxuY)
-//////* The result file  **/The new bands.xlsx** and the DB SQL dump file  **/gammatest.sql** are under the folder  **README file img**.
+* [THE LIVE DEMO for you to live the real experience🎵](https://www.youtube.com/watch?v=gnBWbMedD5k)
+* The DB SQL dump file  **/synextadb.sql** are under the folder  **README FILE imgs**.
+  
 ## The App frontend Overview💻
 ### Part 1
 * *Sign in page*
